@@ -1,10 +1,10 @@
-## Users Details
+## Employee App
 
 This is an Android shopping application built using Android Jetpack Compose with a Firebase backend. The app follows the MVVM (Model-View-ViewModel) architecture and has a minimum supported Android version of Android 10.
 
 ## Features
-1) Search feature for Users
-2) Click on any searched users then able to see user complete details.
+1) Search feature to search Employees
+2) Click on any searched users then able to see employee complete details.
 
 ## Prerequisites
 Before running the app, make sure you have the following:
