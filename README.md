@@ -1,6 +1,6 @@
 ## Employee App
 
-This is an Android shopping application built using Android Jetpack Compose with a Firebase backend. The app follows the MVVM (Model-View-ViewModel) architecture and has a minimum supported Android version of Android 10.
+This is an Android Employee application built using Android Jetpack Compose. The app follows the MVVM (Model-View-ViewModel) architecture and has a minimum supported Android version of Android 10.
 
 ## Features
 1) Search feature to search Employees
