@@ -1,4 +1,4 @@
-## ShopKart
+## Users Details
 
 This is an Android shopping application built using Android Jetpack Compose with a Firebase backend. The app follows the MVVM (Model-View-ViewModel) architecture and has a minimum supported Android version of Android 10.
 
