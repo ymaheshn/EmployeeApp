@@ -1,8 +1,8 @@
 package com.example.employeeapp.api
 
+import android.util.Log
 import okhttp3.Interceptor
 import okhttp3.Response
-import android.util.Log
 
 class LoggingInterceptor : Interceptor {
     override fun intercept(chain: Interceptor.Chain): Response {

@@ -9,11 +9,13 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxHeight
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.Button
 import androidx.compose.material3.Card
@@ -114,12 +116,10 @@ fun HomeScreen(navController: NavHostController, sharedViewModel: SharedViewMode
                 modifier = Modifier
                     .padding(top = 20.dp)
             ) {
-                employees.forEachIndexed { index, item ->
-                    items(count = index) {
-                        ItemView(item) {
-                            sharedViewModel.selectedUser = item
-                            navController.navigate("detail")
-                        }
+                items(employees){
+                    ItemView(it){
+                        sharedViewModel.selectedUser = it
+                        navController.navigate("detail")
                     }
                 }
             }
@@ -152,9 +152,7 @@ fun ItemView(employee: User, onClick: () -> Unit) {
                     contentDescription = "User Profile Picture",
                     modifier = Modifier
                         .size(80.dp)
-                        .clip(CircleShape),
-                    /*  placeholder = painterResource(id = R.drawable.ic_launcher_background),
-                      error = painterResource(id = R.drawable.ic_launcher_background),*/
+                        .clip(CircleShape)
                 )
             }
             Column(modifier = Modifier.align(alignment = Alignment.CenterVertically)) {

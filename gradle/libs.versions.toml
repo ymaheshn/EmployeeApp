@@ -16,6 +16,11 @@ coilCompose = "2.7.0"
 navigationCompose = "2.9.0-alpha02"
 mockk = "1.13.13"
 kotlinxCoroutinesTest = "1.9.0"
+lifecycleLivedataKtx = "2.9.0-alpha06"
+kotlinTestCommon = "2.1.0-RC"
+coreTesting = "2.2.0"
+lifecycleViewmodelKtx = "2.9.0-alpha06"
+mockitoCore = "5.14.2"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -40,6 +45,11 @@ coil-compose = { group = "io.coil-kt", name = "coil-compose", version.ref = "coi
 androidx-navigation-compose = { group = "androidx.navigation", name = "navigation-compose", version.ref = "navigationCompose" }
 mockk = { group = "io.mockk", name = "mockk", version.ref = "mockk" }
 kotlinx-coroutines-test = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-test", version.ref = "kotlinxCoroutinesTest" }
+androidx-lifecycle-livedata-ktx = { group = "androidx.lifecycle", name = "lifecycle-livedata-ktx", version.ref = "lifecycleLivedataKtx" }
+kotlin-test-common = { group = "org.jetbrains.kotlin", name = "kotlin-test-common", version.ref = "kotlinTestCommon" }
+androidx-core-testing = { group = "androidx.arch.core", name = "core-testing", version.ref = "coreTesting" }
+androidx-lifecycle-viewmodel-ktx = { group = "androidx.lifecycle", name = "lifecycle-viewmodel-ktx", version.ref = "lifecycleViewmodelKtx" }
+mockito-core = { group = "org.mockito", name = "mockito-core", version.ref = "mockitoCore" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

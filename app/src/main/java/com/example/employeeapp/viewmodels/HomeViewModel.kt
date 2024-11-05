@@ -7,12 +7,13 @@ import com.example.employeeapp.model.User
 import com.example.employeeapp.repository.EmployeeRepository
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 
 class HomeViewModel(private val employeeRepository: EmployeeRepository) : ViewModel() {
 
     private val _employees = MutableStateFlow<List<User>>(emptyList())
-    val employees: StateFlow<List<User>> = _employees
+    val employees: StateFlow<List<User>> = _employees.asStateFlow()
 
     private val _isLoading = MutableStateFlow(false)
     val isLoading: StateFlow<Boolean> = _isLoading

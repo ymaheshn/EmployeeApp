@@ -1,5 +1,6 @@
 package com.example.employeeapp
 
+import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.example.employeeapp.model.Dob
 import com.example.employeeapp.model.EmployeesResponse
 import com.example.employeeapp.model.Location
@@ -10,28 +11,30 @@ import com.example.employeeapp.model.User
 import com.example.employeeapp.repository.EmployeeRepository
 import com.example.employeeapp.viewmodels.HomeViewModel
 import io.mockk.*
-import io.mockk.impl.annotations.MockK
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.take
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.test.StandardTestDispatcher
 import kotlinx.coroutines.test.resetMain
+import kotlinx.coroutines.test.runTest
 import kotlinx.coroutines.test.setMain
 import org.junit.After
 import org.junit.Assert.*
 import org.junit.Before
+import org.junit.Rule
 import org.junit.Test
+import kotlin.test.assertEquals
 
 @ExperimentalCoroutinesApi
 class HomeViewModelTest {
 
-    @MockK
+    @get:Rule
+    val instantTaskExecutorRule = InstantTaskExecutorRule()
+
     private lateinit var homeViewModel: HomeViewModel
 
-    @MockK
-    private lateinit var employeeRepository: EmployeeRepository
+    private var employeeRepository: EmployeeRepository = mockk()
 
     private val testDispatcher = StandardTestDispatcher()
 
@@ -47,8 +50,10 @@ class HomeViewModelTest {
         Dispatchers.resetMain() // Clean up the dispatcher after tests
     }
 
+
     @Test
-    fun `fetchUsers successfully updates employees and loading state`() = runBlocking {
+    fun `fetchUsers successfully updates employees and loading state`() = runTest {
+
         // Given
         val numberOfEmployees = 2
         val mockResponse = EmployeesResponse(
@@ -103,9 +108,12 @@ class HomeViewModelTest {
         // Then
         assertTrue(homeViewModel.isLoading.value) // Loading should be true initially
         val users = mutableListOf<List<User>>()
+
         launch {
             homeViewModel.employees.take(1).collect { users.add(it) }
         }
+
+
         // Wait for loading to finish
         while (homeViewModel.isLoading.value) {
             // wait
@@ -120,7 +128,7 @@ class HomeViewModelTest {
     }
 
     @Test
-    fun `fetchUsers handles error and updates loading state`() = runBlocking {
+    fun `fetchUsers handles error and updates loading state`() = runTest {
 
         val numberOfEmployees = 2
 
@@ -135,9 +143,11 @@ class HomeViewModelTest {
 
         // Then
         assertTrue(homeViewModel.isLoading.value) // Loading should be true initially
+
         launch {
             homeViewModel.employees.take(1).collect { }
         }
+
         // Wait for loading to finish
         while (homeViewModel.isLoading.value) {
             // wait
@@ -153,7 +163,7 @@ class HomeViewModelTest {
     }
 
     @Test
-    fun `fetchUsers sets loading state to false after operation`() = runBlocking {
+    fun `fetchUsers sets loading state to false after operation`() = runTest {
 
         val numberOfEmployees = 2
         // Given
