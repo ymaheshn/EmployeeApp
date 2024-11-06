@@ -1,12 +1,15 @@
 package com.example.employeeapp.screens
 
 import androidx.activity.compose.BackHandler
-import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.wrapContentHeight
+import androidx.compose.material3.Card
+import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
@@ -33,77 +36,89 @@ fun EmployeeDetailsScreen(navController: NavHostController, sharedViewModel: Sha
             .padding(top = 20.dp),
         color = MaterialTheme.colorScheme.background
     ) {
-        Column(modifier = Modifier.padding(16.dp)) {
-            Box(
+        Column(modifier = Modifier.padding(10.dp)) {
+            Card(
                 modifier = Modifier
-                    .align(Alignment.CenterHorizontally)
-                    .size(244.dp)
-                    .clip(RectangleShape)
-                    .border(2.dp, Color.Green, RectangleShape),
+                    .fillMaxWidth()
+                    .wrapContentHeight()
+                    .padding(2.dp),
+                elevation = CardDefaults.cardElevation(4.dp),
+                colors = CardDefaults.cardColors(Color.White),
             ) {
-                AsyncImage(
-                    model = user?.picture?.large,
-                    contentDescription = "User Profile Picture",
-                    modifier = Modifier
-                        .fillMaxSize()
-                        .clip(RectangleShape)
-                )
+                Column {
+                    Box(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .align(Alignment.CenterHorizontally)
+                            .size(344.dp)
+                            .clip(RectangleShape)
+                        //.border(2.dp, Color.Green, RectangleShape),
+                    ) {
+                        AsyncImage(
+                            model = user?.picture?.large,
+                            contentDescription = "User Profile Picture",
+                            modifier = Modifier
+                                .fillMaxSize()
+                                .clip(RectangleShape)
+                        )
+                    }
+
+                    Text(
+                        fontFamily = FontFamily.Default,
+                        fontSize = 16.sp,
+                        text = "Full Name: ${user?.name?.title} ${user?.name?.first} ${user?.name?.last}",
+                        color = Color.Black,
+                        modifier = Modifier.padding(3.dp)
+                    )
+
+                    Text(
+                        fontFamily = FontFamily.Default,
+                        fontSize = 16.sp,
+                        text = "Email: ${user?.email}",
+                        color = Color.Black,
+                        modifier = Modifier.padding(3.dp)
+                    )
+                    Text(
+                        fontFamily = FontFamily.Default,
+                        fontSize = 16.sp,
+                        text = "Phone: ${user?.phone}",
+                        color = Color.Black,
+                        modifier = Modifier.padding(3.dp)
+                    )
+
+                    Text(
+                        fontFamily = FontFamily.Default,
+                        fontSize = 16.sp,
+                        text = "Age: ${user?.dob?.age}",
+                        color = Color.Black,
+                        modifier = Modifier.padding(3.dp)
+                    )
+                    Text(
+                        fontFamily = FontFamily.Default,
+                        fontSize = 16.sp,
+                        text = "Address: ${user?.location?.street?.name}, ${user?.location?.street?.number}",
+                        color = Color.Black,
+                        modifier = Modifier.padding(3.dp)
+                    )
+                    Text(
+                        fontFamily = FontFamily.Default,
+                        fontSize = 16.sp,
+                        text = "State: ${user?.location?.state}",
+                        color = Color.Black,
+                        modifier = Modifier.padding(3.dp)
+                    )
+                    Text(
+                        fontFamily = FontFamily.Default,
+                        fontSize = 16.sp,
+                        text = "Country: ${user?.location?.country}",
+                        color = Color.Black,
+                        modifier = Modifier.padding(3.dp)
+                    )
+                }
             }
-            Text(
-                fontFamily = FontFamily.Default,
-                fontSize = 16.sp,
-                text = "Full Name: ${user?.name?.title} ${user?.name?.first} ${user?.name?.last}",
-                color = Color.Black,
-                modifier = Modifier.padding(3.dp)
-            )
-
-            Text(
-                fontFamily = FontFamily.Default,
-                fontSize = 16.sp,
-                text = "Email: ${user?.email}",
-                color = Color.Black,
-                modifier = Modifier.padding(3.dp)
-            )
-            Text(
-                fontFamily = FontFamily.Default,
-                fontSize = 16.sp,
-                text = "Phone: ${user?.phone}",
-                color = Color.Black,
-                modifier = Modifier.padding(3.dp)
-            )
-
-            Text(
-                fontFamily = FontFamily.Default,
-                fontSize = 16.sp,
-                text = "Age: ${user?.dob?.age}",
-                color = Color.Black,
-                modifier = Modifier.padding(3.dp)
-            )
-            Text(
-                fontFamily = FontFamily.Default,
-                fontSize = 16.sp,
-                text = "Address: ${user?.location?.street?.name}, ${user?.location?.street?.number}",
-                color = Color.Black,
-                modifier = Modifier.padding(3.dp)
-            )
-            Text(
-                fontFamily = FontFamily.Default,
-                fontSize = 16.sp,
-                text = "State: ${user?.location?.state}",
-                color = Color.Black,
-                modifier = Modifier.padding(3.dp)
-            )
-            Text(
-                fontFamily = FontFamily.Default,
-                fontSize = 16.sp,
-                text = "Country: ${user?.location?.country}",
-                color = Color.Black,
-                modifier = Modifier.padding(3.dp)
-            )
+        }
+        BackHandler {
+            navController.popBackStack()
         }
     }
-    BackHandler {
-        navController.popBackStack()
-    }
 }
-

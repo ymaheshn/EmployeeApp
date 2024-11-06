@@ -5,6 +5,10 @@ import com.example.employeeapp.model.EmployeesResponse
 
 class EmployeeRepository(private val apiService: ApiService) {
     suspend fun getUsers(results: Int): EmployeesResponse? {
-        return apiService.getUsers(results)
+        return try {
+            apiService.getUsers(results)
+        } catch (e: Exception) {
+            throw Exception("Failed to fetch data", e)
+        }
     }
 }
