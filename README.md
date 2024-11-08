@@ -2,6 +2,13 @@
 
 This is an Android Employee application built using Android Jetpack Compose. The app follows the MVVM (Model-View-ViewModel) architecture with Hilt libary and has a minimum supported Android version of Android 10.
 
+## Screenshots
+
+Here is a screenshot of the app's main screen:
+
+![App Screenshot](images/Screenshot_20241108_145613.png)
+![App Screenshot](images/Screenshot_20241108_145734.png)
+
 ## Features
 1) Search feature to search Employees
 2) Click on any searched users then able to see employee complete details.
