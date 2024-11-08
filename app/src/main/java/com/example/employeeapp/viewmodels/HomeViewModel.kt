@@ -1,17 +1,20 @@
 package com.example.employeeapp.viewmodels
 
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import com.example.employeeapp.api.NetworkResult
 import com.example.employeeapp.model.User
 import com.example.employeeapp.repository.EmployeeRepository
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class HomeViewModel(private val employeeRepository: EmployeeRepository) : ViewModel() {
+@HiltViewModel
+class HomeViewModel @Inject constructor(private val employeeRepository: EmployeeRepository) :
+    ViewModel() {
 
     private val _employees = MutableStateFlow<NetworkResult<List<User>>>(NetworkResult.Loading)
     val employees: StateFlow<NetworkResult<List<User>>> = _employees.asStateFlow()
@@ -42,16 +45,5 @@ class HomeViewModel(private val employeeRepository: EmployeeRepository) : ViewMo
                 _isLoading.value = false
             }
         }
-    }
-}
-
-
-class UserViewModelFactory(private val repository: EmployeeRepository) : ViewModelProvider.Factory {
-    override fun <T : ViewModel> create(modelClass: Class<T>): T {
-        if (modelClass.isAssignableFrom(HomeViewModel::class.java)) {
-            @Suppress("UNCHECKED_CAST")
-            return HomeViewModel(repository) as T
-        }
-        throw IllegalArgumentException("Unknown ViewModel class")
     }
 }

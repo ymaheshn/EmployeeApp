@@ -32,42 +32,25 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.ViewModelStoreOwner
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import coil.compose.AsyncImage
 import com.example.employeeapp.api.NetworkResult
-import com.example.employeeapp.api.RetrofitInstance
 import com.example.employeeapp.model.User
-import com.example.employeeapp.repository.EmployeeRepository
 import com.example.employeeapp.viewmodels.HomeViewModel
 import com.example.employeeapp.viewmodels.SharedViewModel
-import com.example.employeeapp.viewmodels.UserViewModelFactory
 import kotlinx.coroutines.launch
 
 @SuppressLint("CoroutineCreationDuringComposition")
 @Composable
 fun HomeScreen(navController: NavHostController, sharedViewModel: SharedViewModel) {
 
-    val context = LocalContext.current
-    val retrofitInstance = RetrofitInstance
-    val api = retrofitInstance.api
-
-    val employeeRepository = remember {
-        EmployeeRepository(apiService = api)
-    }
-
-    val userViewModelFactory = UserViewModelFactory(employeeRepository)
-    val homeViewModel: HomeViewModel = ViewModelProvider(
-        context as ViewModelStoreOwner,
-        userViewModelFactory
-    )[HomeViewModel::class.java]
+    val homeViewModel: HomeViewModel = hiltViewModel()
 
     LaunchedEffect(true) {
         launch {

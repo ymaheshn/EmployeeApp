@@ -1,6 +1,5 @@
 package com.example.employeeapp
 
-import android.graphics.Color
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -16,13 +15,13 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.example.employeeapp.model.User
 import com.example.employeeapp.screens.EmployeeDetailsScreen
 import com.example.employeeapp.screens.HomeScreen
 import com.example.employeeapp.ui.theme.EmployeeAppTheme
 import com.example.employeeapp.viewmodels.SharedViewModel
-import com.google.gson.Gson
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
