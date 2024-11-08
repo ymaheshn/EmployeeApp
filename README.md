@@ -6,8 +6,8 @@ This is an Android Employee application built using Android Jetpack Compose. The
 
 Here is a screenshot of the app's main screen:
 
-![App Screenshot](images/Screenshot_20241108_145613.png)
-![App Screenshot](images/Screenshot_20241108_145734.png)
+![Screenshot_20241108_145734](https://github.com/user-attachments/assets/2a72c2a8-24f5-4617-80ca-9df30f8f46f0)
+![Screenshot_20241108_145613](https://github.com/user-attachments/assets/bb8b9a12-d1f3-4b0f-975a-3a45d900e0bf)
 
 ## Features
 1) Search feature to search Employees
